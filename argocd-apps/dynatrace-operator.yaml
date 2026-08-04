@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dynatrace-operator
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
+      chart: dynatrace-operator
+      targetRevision: 1.7.3
+      helm:
+        values: |
+          installCRD: true
+          platform: kubernetes
+    - repoURL: https://github.com/joshuadwood/argocd-aks-dynatrace-demo.git
+      targetRevision: main
+      path: dynatrace/overlays/v1beta5
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dynatrace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

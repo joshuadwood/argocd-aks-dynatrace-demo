@@ -1,0 +1,15 @@
+apiVersion: dynatrace.com/v1beta5
+kind: DynaKube
+metadata:
+  name: dynakube
+  namespace: dynatrace
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  apiUrl: https://qof78400.live.dynatrace.com/api
+  oneAgent:
+    cloudNativeFullStack: {}
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
