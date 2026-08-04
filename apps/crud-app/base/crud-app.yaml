@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-app
+  namespace: crud
+  labels:
+    app: crud-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crud-app
+  template:
+    metadata:
+      labels:
+        app: crud-app
+    spec:
+      imagePullSecrets:
+        - name: acr-pull-secret
+      containers:
+        - name: crud-app
+          image: crud-app:placeholder
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PGHOST
+              value: postgres
+            - name: PGPORT
+              value: "5432"
+            - name: PGUSER
+              value: postgres
+            - name: PGPASSWORD
+              value: postgres
+            - name: PGDATABASE
+              value: crud
+            - name: APP_VERSION
+              value: "1.0.0"
+            - name: APP_FEATURES
+              value: ""
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crud-app
+  namespace: crud
+spec:
+  type: LoadBalancer
+  selector:
+    app: crud-app
+  ports:
+    - port: 80
+      targetPort: 8080

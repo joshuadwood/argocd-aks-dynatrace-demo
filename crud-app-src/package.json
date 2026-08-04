@@ -1,0 +1,13 @@
+{
+  "name": "crud-app",
+  "version": "1.0.0",
+  "description": "Sample CRUD app for AKS/ArgoCD/Dynatrace demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
