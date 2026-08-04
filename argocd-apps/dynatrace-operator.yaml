@@ -10,14 +10,14 @@ spec:
   sources:
     - repoURL: https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
       chart: dynatrace-operator
-      targetRevision: 1.7.3
+      targetRevision: 1.8.0
       helm:
         values: |
           installCRD: true
           platform: kubernetes
     - repoURL: https://github.com/joshuadwood/argocd-aks-dynatrace-demo.git
       targetRevision: main
-      path: dynatrace/overlays/v1beta5
+      path: dynatrace/overlays/v1beta6
   destination:
     server: https://kubernetes.default.svc
     namespace: dynatrace

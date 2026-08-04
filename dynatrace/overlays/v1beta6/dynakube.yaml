@@ -1,0 +1,14 @@
+apiVersion: dynatrace.com/v1beta6
+kind: DynaKube
+metadata:
+  name: dynakube
+  namespace: dynatrace
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  apiUrl: https://qof78400.live.dynatrace.com/api
+  oneAgent:
+    cloudNativeFullStack: {}
+  # ActiveGate (routing + kubernetes-monitoring) intentionally omitted: apiToken lacks
+  # activeGateTokenManagement.create scope. OneAgent code-module injection does not
+  # require ActiveGate, so this is not a blocker for the core validation goal.
