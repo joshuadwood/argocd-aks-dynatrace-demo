@@ -12,4 +12,3 @@ spec:
   activeGate:
     capabilities:
       - routing
-      - kubernetes-monitoring
