@@ -44,6 +44,15 @@ app.get('/items', async (req, res) => {
   res.json(result.rows);
 });
 
+app.get('/items/search', async (req, res) => {
+  const q = req.query.q || '';
+  const result = await pool.query(
+    "SELECT * FROM items WHERE name ILIKE $1 OR description ILIKE $1 ORDER BY id",
+    [`%${q}%`]
+  );
+  res.json(result.rows);
+});
+
 app.get('/items/:id', async (req, res) => {
   const result = await pool.query('SELECT * FROM items WHERE id = $1', [req.params.id]);
   if (result.rows.length === 0) return res.status(404).json({ error: 'not found' });
