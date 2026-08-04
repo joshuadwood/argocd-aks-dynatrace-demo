@@ -9,3 +9,7 @@ spec:
   apiUrl: https://qof78400.live.dynatrace.com/api
   oneAgent:
     cloudNativeFullStack: {}
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
