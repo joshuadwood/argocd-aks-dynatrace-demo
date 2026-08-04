@@ -9,7 +9,6 @@ spec:
   apiUrl: https://qof78400.live.dynatrace.com/api
   oneAgent:
     cloudNativeFullStack: {}
-  activeGate:
-    capabilities:
-      - routing
-      - kubernetes-monitoring
+  # ActiveGate (routing + kubernetes-monitoring) intentionally omitted: apiToken lacks
+  # activeGateTokenManagement.create scope. OneAgent code-module injection does not
+  # require ActiveGate, so this is not a blocker for the core validation goal.
