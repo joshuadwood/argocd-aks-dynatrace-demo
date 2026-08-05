@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     # DynaKube CR only — synced independently, after both CRDs and the
     # operator/webhook Deployment have already fully rolled over.
-    path: dynatrace-split/operator-extras/v1beta5
+    path: dynatrace-split/operator-extras/v1beta1
   destination:
     server: https://kubernetes.default.svc
     namespace: dynatrace-split
