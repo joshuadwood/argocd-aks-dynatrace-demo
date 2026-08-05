@@ -9,3 +9,6 @@ spec:
   apiUrl: https://qof78400.live.dynatrace.com/api
   oneAgent:
     classicFullStack: {}
+  templates:
+    otelCollector:
+      replicas: 1
