@@ -11,7 +11,7 @@ spec:
     repoURL: https://github.com/joshuadwood/argocd-aks-dynatrace-demo.git
     targetRevision: main
     # CRDs only — bump this path to change CRD version, independent of the operator app
-    path: dynatrace-split/crds/v1.0.0
+    path: dynatrace-split/crds/v1.8.0
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
