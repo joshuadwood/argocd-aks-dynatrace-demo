@@ -10,14 +10,14 @@ spec:
   sources:
     - repoURL: https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
       chart: dynatrace-operator
-      targetRevision: 1.0.0
+      targetRevision: 1.7.3
       helm:
         values: |
           installCRD: false
           platform: kubernetes
     - repoURL: https://github.com/joshuadwood/argocd-aks-dynatrace-demo.git
       targetRevision: main
-      path: dynatrace-split/operator-extras/v1beta1
+      path: dynatrace-split/operator-extras/v1beta5
   destination:
     server: https://kubernetes.default.svc
     namespace: dynatrace-split
