@@ -10,15 +10,11 @@ spec:
   sources:
     - repoURL: https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
       chart: dynatrace-operator
-      targetRevision: 1.7.3
+      targetRevision: 1.0.0
       helm:
         values: |
           installCRD: false
           platform: kubernetes
-          # Disabled: this PreSync-hook Job deadlocks against the very webhook
-          # rollout it blocks whenever storedVersions has multiple entries.
-          # See CRD upgrade findings.
-          crdStorageMigrationJob: false
   destination:
     server: https://kubernetes.default.svc
     namespace: dynatrace-split
