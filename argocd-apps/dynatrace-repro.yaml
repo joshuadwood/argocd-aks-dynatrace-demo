@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
       chart: dynatrace-operator
-      targetRevision: 1.0.0
+      targetRevision: 1.8.0
       helm:
         values: |
           installCRD: true
