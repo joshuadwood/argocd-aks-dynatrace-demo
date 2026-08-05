@@ -15,6 +15,10 @@ spec:
         values: |
           installCRD: false
           platform: kubernetes
+          # Disabled: this PreSync-hook Job deadlocks against the very webhook
+          # rollout it blocks whenever storedVersions has multiple entries.
+          # See CRD upgrade findings.
+          crdStorageMigrationJob: false
   destination:
     server: https://kubernetes.default.svc
     namespace: dynatrace-split
