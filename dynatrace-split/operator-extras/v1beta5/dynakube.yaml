@@ -1,0 +1,15 @@
+apiVersion: dynatrace.com/v1beta5
+kind: DynaKube
+metadata:
+  name: dynakube-split
+  namespace: dynatrace-split
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  apiUrl: https://qof78400.live.dynatrace.com/api
+  tokens: dynakube-split
+  oneAgent:
+    classicFullStack: {}
+  templates:
+    otelCollector:
+      replicas: 1
