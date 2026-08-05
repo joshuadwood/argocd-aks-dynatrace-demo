@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dt-dynakube-split
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuadwood/argocd-aks-dynatrace-demo.git
+    targetRevision: main
+    # DynaKube CR only — synced independently, after both CRDs and the
+    # operator/webhook Deployment have already fully rolled over.
+    path: dynatrace-split/operator-extras/v1beta5
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dynatrace-split
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
